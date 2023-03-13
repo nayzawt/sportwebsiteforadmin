@@ -1,0 +1,278 @@
+.post {
+    display: flex;
+}
+
+.postContainer {
+    flex: 6;
+    background-color: #f2f7f8;
+
+}
+
+.post-id {
+    width: 7%;
+    text-align: left;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.profile-inner {
+    margin-top: 40px;
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+}
+
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    color: #fff;
+}
+
+.count-span {   
+    color: red;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.post-name {
+    width: 20%;
+    word-break: break-all;
+    text-align: justify;
+    text-align: left;
+}
+
+.post-title {
+    font-size: 13px;
+}
+
+.port-img {
+    width: 20%;
+    margin-left: 10px;
+    text-align: left;
+    word-break: break-all;
+}
+
+.post-img label {
+    width: 100%;
+    height: 100%;
+    margin-top: 0px;
+}
+
+.post-img {
+    width: 170px;
+    height: 150px;
+    border: 1px solid #ccc;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.post-img img {
+    width: 100%;
+    height: 100%;  
+}
+
+.post-img input {
+    display: none;
+}
+
+.post-img .postspan {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #999;
+    cursor: pointer;
+}
+
+.port-img .inner-img  {
+    width: 40px;
+    height: 30px;
+}
+
+.port-img .inner-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.post-category {
+    width: 20%;
+    margin-left: 20px;
+    word-break: break-all;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.post-date {
+    width: 20%;
+    margin-left: 10px;
+    word-break: break-all;
+    text-align: left;
+}
+
+.post-action {
+    width: 13%;
+    margin-left: 10px;
+    display: flex;
+    word-break: break-all;
+    text-align: left;
+}
+
+.post-action .delete {
+    margin-left: 20px;
+    color: red;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.post-action .edit {
+    color: #009efb;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.table-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 11px 15px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-left: none;
+    border-right: none;
+    color: #808191;
+    cursor: pointer;  
+    transition: all 0.3s ease;
+}
+
+.table-inner:hover {
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+    border: none;
+    transition: all 0.3s ease;
+    background-color: #fff;
+    border: 1px solid #147dfd;
+}
+
+.square_btn{
+    margin-top: 20px;
+    margin-right: 10px;
+    display: inline-block;
+    padding: 0.3em 0.8em;
+    text-decoration: none;
+    background: #009efb;
+    color: #FFF;
+    outline: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.square_btn:active {
+    -ms-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+    border-bottom: none;
+}
+
+.square_btnnot{
+    margin-top: 20px;
+    margin-right: 10px;
+    display: inline-block;
+    padding: 0.3em 0.8em;
+    background: #009efb;
+    color: #FFF;
+    outline: none;
+    opacity: 0.5;
+    cursor: no-drop;
+    border-radius: 3px;
+}
+.square_btnnot:active {
+    -ms-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+    border-bottom: none;
+    cursor: no-drop;
+}
+
+
+// *****************
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+
+  input[type=date], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    
+  }
+  
+  label {
+    padding: 0px 12px 12px 0;
+    display: inline-block;
+  }
+  
+  .col-25 {
+    width: 25%;
+    color: #808191;
+    margin-bottom: 6px;
+  }
+
+  .col-75 input {
+    width: 100%;
+    margin-bottom: 6px;
+    outline: none;
+  }
+  
+  .col-75 select {
+    width: 100%;
+    margin-bottom: 6px;
+    color: #808191;
+    outline: none;
+  }
+
+  .col-75 select:focus {
+    border: 1px solid #009efb;
+  }
+
+  .col-75 input:focus {
+    border: 1px solid #009efb;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+  }

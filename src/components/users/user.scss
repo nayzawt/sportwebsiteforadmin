@@ -1,0 +1,156 @@
+
+.user {
+    display: flex;
+
+    .userContainer {
+        flex: 6;
+       background-color: #f2f7f8;
+    }
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;  
+    color: #fff;
+}
+
+.name {
+    width: 20%;
+    word-break: break-all;
+    text-align: left;
+}
+
+.user-img {
+    width: 20%;
+    margin-left: 10px;
+    text-align: left;
+    word-break: break-all;
+}
+
+.user-inner-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+}
+
+.user-inner-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.email {
+    width: 20%;
+    margin-left: 10px;
+    text-align: left;
+    word-break: break-all;
+}
+.action {
+    width: 15%;
+    display: flex;
+    word-break: break-all;
+    text-align: left;
+}
+
+.user-header-id {
+    width: 20%;
+}
+
+.user-header-image {
+    width: 20%;
+}
+
+.user-header-name {
+    width: 20%;
+
+}
+
+.user-header-email {
+    width: 20%;
+}
+
+.user-header-action {
+    width: 15%;
+}
+
+.action .delete {
+    margin-left: 20px;
+    color: red;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.action .edit {
+    color: #009efb;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.create-but {
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-id {
+    width: 20%;
+    word-break: break-all;
+    text-align: left;
+}
+
+.create-but {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.create-but input {
+    border: none;
+}
+
+.create-but h4 {
+    margin-bottom: 10px;
+}
+
+.create-but button {
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+    background-color: #009efb;
+    font-size: 15px;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    padding: 10px 15px;
+    border: none;
+    outline: none;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.create-but button:hover {
+    background-color: #1433fd;
+}
+
+
+
+.table-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+    padding: 0px 15px;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-right: none;
+    color: #808191;
+    cursor: pointer;
+    
+    transition: all 0.3s ease;
+}
+
+.table-inner:hover {
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+    border: none;
+    transition: all 0.3s ease;
+    background-color: #fff;
+    border: 1px solid #2e42f9;
+}
