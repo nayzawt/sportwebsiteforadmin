@@ -10,16 +10,7 @@ import UserTable from './UserTable'
 const User = () => {
   
   return (
-    <div>
-      <Navbar />
-      <div className="user">
-      <Sidebar />
-      <div className="userContainer">
-          <UserTable />
-          
-      </div>
-    </div>
-    </div>
+    <UserTable />
   )
 }
 

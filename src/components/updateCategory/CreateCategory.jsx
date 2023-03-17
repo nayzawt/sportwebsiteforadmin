@@ -35,12 +35,7 @@ const CreateCategory = () => {
     {
       loading? <div className="loading"><img src={img} alt="" className="loading-img" /></div> :
 
-      <div>
-        <Navbar />
-        <div className="category">
-            <Sidebar />
-            <div className="categoryContainer">
-            <div className="main-category">
+      <div className="main-category">
               <div className="profile-inner" >
                 <form onSubmit={(e) => onSubmit(e)}>
                   <div className='profile-inner-second'>
@@ -61,9 +56,6 @@ const CreateCategory = () => {
                 </form>   
               </div>
             </div>
-            </div>
-        </div>
-    </div>
     }
     </>
   )

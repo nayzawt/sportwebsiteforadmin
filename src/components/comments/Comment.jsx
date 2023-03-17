@@ -6,15 +6,7 @@ import CommentTable from './CommentTable';
 
 const Comment = () => {
   return (
-    <div>
-      <Navbar />
-      <div className="comment">
-        <Sidebar />
-        <div className="commentContainer">
-            <CommentTable />
-        </div>
-      </div>
-    </div>
+    <CommentTable />
   )
 }
 

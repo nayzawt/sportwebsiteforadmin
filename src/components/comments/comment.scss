@@ -5,11 +5,20 @@
 .commentContainer {
     flex: 6;
     padding-top: 20px;
+    height: 100vh;
+    background-color: #f2f7f8;
 }
 
 .date {
     width: 200px;
     text-align: left;
+}
+
+@media screen and (max-width: 1100px) {
+    .thead{
+      width: 1100px;
+      overflow-x: scroll;
+    }
 }
 
 // table {

@@ -16,9 +16,7 @@ const Navbar = () => {
   let profileImage = profile?.user?.image
 
   return (
-    <div className="navbarmain">
-      <div className="wrapper">
-        
+    <div className="navbarmain">     
         <div className="inner">
         <div className="top">
           <Link to="/" style={{ textDecoration: "none" }}>
@@ -40,7 +38,7 @@ const Navbar = () => {
           <div className="item">
           
             <img
-              src={API_URL + profileImage}
+              src={profileImage}
               alt=""
               className="avatar"
             />
@@ -49,7 +47,6 @@ const Navbar = () => {
           
           </div>
         </div>
-      </div>
     </div>
   );
 };

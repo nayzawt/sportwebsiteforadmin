@@ -10,108 +10,117 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { format } from 'timeago.js';
 
 const PostTable = () => {
-    const navigate = useNavigate();
-    const [post, setPost] = useState([]);
-    const [page, setPage] = useState(1);
-    const [querry, setQuerry] = useState('')
-     
-    const getPosts = async () => {
-      let param = `v1/posts?sortBy=_id:desc&page=${page}&limit=4`
+  const navigate = useNavigate();
+  const [post, setPost] = useState([]);
+  const [page, setPage] = useState(1);
+  const [querry, setQuerry] = useState('');
+  const [search, setSearch] = useState(false)
 
-      if(querry) {
-        param += `&title=${querry}`
-      }
-      const resultPost = await ( await axiosAuth().get(API_URL + param)).data
-      setPage(resultPost?.page)
-      setPost(resultPost);
-    }
-  
-    console.log(post)
-    const handleNext = () => {
-      setPage(page + 1)
-    }
-  
-    const handlePrev = () => {
-      setPage(page - 1)
-    }
+  const getPosts = async () => {
+    let param = `v1/posts?sortBy=_id:desc&page=${page}&limit=8`
 
-    const searchInput =  (e) => {
-      setPage(1)
-      setQuerry(e.target.value)
+    if (querry) {
+      param += `&title=${querry}`
     }
+    const resultPost = await (await axiosAuth().get(API_URL + param)).data
+    setPage(resultPost?.page)
+    setPost(resultPost);
+  }
 
-    useEffect(() => {
-      getPosts();
-    }, [page, querry]);
+  console.log(post)
+  const handleNext = () => {
+    setPage(page + 1)
+  }
 
-    const {id} = useParams();
-    
-    const deletePost = async (id) => {
-      alert('You sure this user is post')
-      await axiosAuth().delete(API_URL + `v1/posts/${id}`) 
-      getPosts();
-    }
+  const handlePrev = () => {
+    setPage(page - 1)
+  }
+
+  const searchInput = (e) => {
+    setPage(1)
+    setQuerry(e.target.value)
+  }
+
+  useEffect(() => {
+    getPosts();
+  }, [page, querry]);
+
+  const { id } = useParams();
+
+  const deletePost = async (id) => {
+    alert('You sure this user is post')
+    await axiosAuth().delete(API_URL + `v1/posts/${id}`)
+    getPosts();
+  }
 
   return (
-      <div className="main">
-        <div className='thead'>
-        <h4>Posts</h4>
-        <div className="create-but">               
-          <input type="text" placeholder='Search...' value={querry} onChange={searchInput} />
-          <button  onClick={() => navigate('create-posts')}>Add Post</button>
-        </div>
-        <tr className='table-header'>
-          <th className='post-name'><span>TITLE</span></th>
-          <th className='port-img'>IMAGE</th>
-          <th className='post-category'>CATEGORY NAME</th>
-          <th className='post-date'>DATE </th>
-          <th className="post-action">ACTION</th>
-        </tr>
+    <div className='main_post'>
+      <div className='create-but'><h4>Posts</h4></div>
+      <div className="create-but">
+      <input type="text" name="search" placeholder="Search title..." value={querry} onChange={searchInput} />
 
-        <div className="post-thead-inner">
-        {
-          post?.results?.map((item, index) => {
-            return(
+        <div class="overlay hidden"></div>
+        <button onClick={() => navigate('create-posts')}>Add Post</button>
+      </div>
+      <div className='thead'>
+        <table id="customers">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Image</th>
+              <th>Category Name</th>
+              <th>Date</th>
+              <th>Action</th>
 
-              <tr className='table-inner' key={index}> 
-                    <th className='post-name post-title'>{item.title}</th>
-                    <th className='port-img'>
+            </tr>
+          </thead>
+
+          <tbody>
+            {
+              post?.results?.map((item, i) => {
+                return (
+                  <tr key={i}>
+                    <td className='post-name'>{item.title}</td>
+                    <td className='port-img'>
                       <div className="inner-img">
-                        <img src={API_URL + item.image} alt="" />
+                        <img src={item.image} alt="" />
                       </div>
-                    </th>
-                    <th className='post-category post-title'>{item.category.name}</th>
-                    <th className='post-date post-title'>{format(item.createdAt)}</th>
-                    
-                    <th className="post-action">
+                    </td>
+                    <td>{item.category.name}</td>
+                    <td>{format(item.date)}</td>
+                    <td className='cate-action'>
                       <EditIcon className='edit' onClick={() => navigate(`edit-posts/${item.id}`)} />
                       <DeleteIcon className="delete" onClick={() => deletePost(item.id)} />
-                    </th> 
-              </tr>
+                    </td>
+                  </tr>
+                )
+              })
+            }
+          </tbody>
 
-            )
-          })
-        }
-        </div>
+        </table>
+
         {
           post?.results?.length === 0 ? <div> Post Not Found </div> : null
         }
-        <button 
-          className={1 >= page ? 'square_btnnot' : 'square_btn'}
-          disabled={1 >= page} onClick={() => handlePrev()}
-        >
-          <ArrowBackIosNewIcon />
-        </button>
-        <span className='page__span'>{post.page}/{post.totalPages}</span>
-        <button 
-          className={post?.totalPages <= page ? 'square_btnnot' : 'square_btn'} 
-          disabled={post?.totalPages <= page} onClick={() => handleNext()}
-        >
-          <ArrowForwardIosIcon />
-        </button>
-    
+
+
       </div>
-      </div>
+      <button
+        className={1 >= page ? 'square_btnnot' : 'square_btn'}
+        disabled={1 >= page} onClick={() => handlePrev()}
+      >
+        <ArrowBackIosNewIcon />
+      </button>
+      <span className='page__span'>{post.page} / {post.totalPages} </span>
+      <button
+        className={post?.totalPages <= page ? 'square_btnnot' : 'square_btn'}
+        disabled={post?.totalPages <= page} onClick={() => handleNext()}
+      >
+        <ArrowForwardIosIcon />
+      </button>
+    </div>
+
   )
- }
+}
 export default PostTable;

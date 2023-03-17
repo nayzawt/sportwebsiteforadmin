@@ -42,13 +42,6 @@ import { logout } from "../../redux/slices/authSlice";
         setField: false
         
     },
-    {
-        name: 'Setting',
-        icon: <SettingsApplicationsIcon  />,
-        setField: true,
-        path: '/users/profile'
-        
-    },
 
 ]
 

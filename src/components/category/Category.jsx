@@ -8,15 +8,7 @@ import CategoryTable from './CategoryTable'
 const Category = () => {
     const navigate = useNavigate();
   return (
-    <div>
-      <Navbar />
-      <div className="category">
-        <Sidebar />
-        <div className="categoryContainer">
-            <CategoryTable />
-        </div>
-    </div>
-    </div>
+    <CategoryTable />
   )
 }
 

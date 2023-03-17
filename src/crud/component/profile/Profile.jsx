@@ -13,17 +13,7 @@ function Profile() {
 
   return (
     <div>
-      <div>
-        <Navbar />
-      </div>
-      <div className='profile'>
-      
-      <Sidebar />
-      <div className="profileConatiner">
-
-      </div>
-      
-  </div>
+ 
     </div>
   )
 }

@@ -17,8 +17,8 @@ export let axiosAuthUpload = () => {
     return axios.create({
     headers: {
         Authorization: `Bearer ${user.tokens?.access?.token}`,
-        'Content-Type': 'multipart/form-data',
-        "Access-Control-Allow-Origin": "*", 
-        "Accept": "application/json"
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Access-Control-Allow-Origin": "*",
+        "Accept": "application/json" 
     }
 })}

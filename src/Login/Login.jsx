@@ -1,4 +1,4 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -9,111 +9,53 @@ import { login } from "../redux/slices/authSlice";
 import { clearMessage } from "../redux/slices/messageSlice";
 
 const Login = () => {
-  let navigate = useNavigate();
-
-  const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { isLoggedIn } = useSelector((state) => state.auth);
   const { message } = useSelector((state) => state.message);
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(clearMessage());
-  }, [dispatch]);
-
-  const initialValues = {
-    email: "",
-    password: "",
-  };
-
-  const validationSchema = Yup.object().shape({
-    email: Yup.string()
-        .email('This is not a valid email')
-        .required("This field is required!"),
-    password: Yup.string()
-        .test('len',
-            'The password must be between 6 and 40 characters.',
-            (val) =>
-                val &&
-                val.toString().length >= 6 &&
-                val.toString().length <= 40
-    )
-    .required("This field is required!"),
-  });
-
-  const handleLogin = (formValue) => {
-    const { email, password } = formValue;
-    setLoading(true);
-
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('password', password);
     dispatch(login({ email, password }))
       .unwrap()
       .then(() => {
-        navigate("/dashboard"); 
+        navigate("/dashboard");
+
       })
-      .catch(() => {
-        setLoading(false);
+      .catch((error) => {
+        console.log(error)
       });
   };
 
 
   return (
-    <div className="mainlogin">
-      <div className="login">
-      <div className="col-md-12 login-form">
-      <div className="card card-container">
-        <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-          alt="profile-img"
-          className="profile-img-card"
-        />
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleLogin}
-        >
-          <Form>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <Field name="email" type="text" className="form-control" />
-              <ErrorMessage
-                name="email"
-                component="div"
-                className="alert alert-danger"
-              />
-            </div>
+    <div id="login-form" className="login-page">
+      <div className="form-box">
+        <div class="form-inner">
 
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <Field name="password" type="password" className="form-control" />
-              <ErrorMessage
-                name="password"
-                component="div"
-                className="alert alert-danger"
-              />
-            </div>
-
-            <div className="form-group">
-              <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
-                {loading && (
-                  <span className="spinner-border spinner-border-sm"></span>
-                )}
-                <span>Login</span>
-              </button>
-            </div>
-          </Form>
-        </Formik>
-      </div>
-
-      {message && (
-        <div className="form-group">
-          <div className="alert alert-danger" role="alert">
-            {message}
-          </div>
+          <form id='login' class='input-group-login' onSubmit={handleLogin} >
+            <h3>Login</h3>
+            <input type='text' class='input-field' placeholder="Enter Email" onChange={e => setEmail(e.target.value)} />
+            <input type='password' class='input-field' placeholder='Enter Password' onChange={e => setPassword(e.target.value)} />
+            <button type='submit' class='submit-btn' disabled={isLoggedIn}>Login</button>
+            {message && (
+              <div className="form-group">
+                <div style={{ color: 'red', marginTop: '10px' }}>
+                  {message}
+                </div>
+              </div>
+            )}
+          </form>
         </div>
-      )}
+      </div>
     </div>
-    </div>
-    </div>
+
+
   );
 };
 

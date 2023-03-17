@@ -1,56 +1,43 @@
 import "./sidebr.scss";
-import { useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { NavLink } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import AppsIcon from '@mui/icons-material/Apps';
 import SidebarData from "./SidebarData";
 import { logout } from "../../redux/slices/authSlice";
 
-const Sidebar = () => {
+const Sidebar = ({isOpen}) => {
   const Dispatch = useDispatch()
   const { dispatch } = useContext(DarkModeContext);
+  const [icon, setIcon] = useState(false);
   const Logout = () => {
     Dispatch(logout())
     alert('You sure logout')
   }
 
   return (
-    <div className="sidebar">
-      <div className="center">
-        {
-          SidebarData.map((item, index) => {
-            return (
-              <div className="inner-center" key={index}>
-                <NavLink to={item.path} style={{ textDecoration: "none", alignItems: 'center' }} className={cl => cl.isActive ? 'sidebar-icon' : 'sidebar-icon icon-change'}  >
-                  <p style={{ paddingRight: '15px', paddingLeft: '15px' }}>{item.icon}</p>
-                  <p>{item.name}</p>
-                </NavLink>
-              </div>
-            )
-          })
-        }
 
-        <div className="inner-center" >
-          <NavLink to={'/login'} style={{ textDecoration: "none", alignItems: 'center' }} className={cl => cl.isActive ? 'sidebar-icon' : 'sidebar-icon icon-change'} onClick={Logout}  >
-            <p style={{ paddingRight: '15px', paddingLeft: '15px' }}>
+        <div  className={isOpen ? "sidebar" : "sidebar-second" }>
+          
+          {
+            SidebarData.map((item, index) => (
+              <NavLink to={item.path} key={index} className="link" style={{ textDecoration: "none", alignItems: 'center' }} >
+                <div className="icon">{item.icon}</div>
+                <div style={{ display: isOpen ? "block" : "none" }} className="link_text">{item.name}</div>
+              </NavLink>
+            ))
+          }
+          <NavLink to={'/login'} style={{ textDecoration: "none", alignItems: 'center' }} className="link"  onClick={Logout}  >
+            <div className="icon">
               <ExitToAppIcon />
-            </p>
-            <p>Logout</p>
+            </div>
+            <div style={{ display: isOpen ? "block" : "none" }} className="link_text">Logout</div>
           </NavLink>
         </div>
-      </div>
-      <div className="bottom">
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "LIGHT" })}
-        ></div>
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "DARK" })}
-        ></div>
-      </div>
-    </div>
+
+
   );
 };
 
