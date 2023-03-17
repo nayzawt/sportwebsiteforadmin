@@ -54,7 +54,7 @@ const Register = () => {
         password: user?.password,
         image: user?.image,
       }
-      const result = await (await axiosAuthUpload().post('http://localhost:5000/v1/users', newUser)).data;
+      const result = await (await axiosAuthUpload().post( API_URL + 'v1/users', newUser)).data;
       console.log(result);
       navigate('/users')
     } catch (error) {

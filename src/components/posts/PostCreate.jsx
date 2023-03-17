@@ -9,6 +9,7 @@ import img from '../../../public/1488.gif'
 import imgLoad from '../../../public/1488.gif'
 import { axiosAuth, axiosAuthUpload } from '../../config/axios'
 import axios from 'axios'
+import { API_URL } from '../../config/constant'
 
 const PostCreate = () => {
   const navigate = useNavigate();
@@ -74,7 +75,7 @@ const PostCreate = () => {
         category: post?.category,
         image: post?.image,
       }
-      const result = await (await axiosAuthUpload().post('http://localhost:5000/v1/posts', newPost)).data;
+      const result = await (await axiosAuthUpload().post(API_URL + 'v1/posts', newPost)).data;
       console.log(result);
       navigate('/posts')
     } catch (error) {

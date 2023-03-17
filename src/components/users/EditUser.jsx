@@ -63,7 +63,7 @@ const UserEdit = () => {
         password: user?.password,
         image: user?.image,
       }
-      const result = await (await axiosAuthUpload().patch(`http://localhost:5000/v1/users/${id}`, newUser)).data;
+      const result = await (await axiosAuthUpload().patch(API_URL + `v1/users/${id}`, newUser)).data;
       console.log(result);
       navigate('/users')
     } catch (error) {
